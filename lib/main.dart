@@ -26,6 +26,18 @@ class _MainAppState extends State<MainApp> {
   final int lamportsPerSol = 1000000000;
 
   @override
+  void initState() {
+    super.initState();
+    (() async {
+      if (!await LocalAssociationScenario.isAvailable()) {
+        print("No MWA Compatible wallet available; please install a wallet");
+      } else {
+        print("FOUND MWA WALLET");
+      }
+    })();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
